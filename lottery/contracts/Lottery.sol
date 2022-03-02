@@ -2,7 +2,10 @@
 
 pragma solidity ^0.8.0;
 
-contract Lottery {
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+
+contract Lottery is Ownable{
     enum State {CLOSED, ONGOING, PICKING_WINNER}
 
     address payable [] public participants;
@@ -21,17 +24,17 @@ contract Lottery {
         _;
     }
 
-    function bet(uint256 amount) public payable AtLeastMinAmountUSD OnGoingGame{
+    function bet() public payable AtLeastMinAmountUSD OnGoingGame{
         participants.push(payable(address (msg.sender)));
         participantWeight[address(msg.sender)] = msg.value;
     }
 
-    constructor() public {
+    constructor() {
         gameState = State.CLOSED;
         minAmountUSD = 50 * 10 ** 18;
     }
 
-    function startLottery() public {
+    function startLottery() public onlyOwner {
         require(gameState != State.ONGOING, "Game Already Started");
         gameState = State.ONGOING;
     }

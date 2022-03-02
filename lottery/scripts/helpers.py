@@ -1,9 +1,7 @@
 from brownie import accounts, network
 
 
-def get_account():
-    for accoount in accounts:
-        print("Accoutn ", accoount);
-    return accounts[0]
+def get_account(index = 0):
+    return accounts[index]
 
 

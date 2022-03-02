@@ -6,7 +6,7 @@ from scripts.helpers import get_account
 def deploy():
     account = get_account()
     result = Lottery.deploy({'from': account})
-    print(result)
+    return result
 
 
 def main():
