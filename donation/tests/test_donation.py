@@ -1,5 +1,4 @@
 import pytest
-from brownie import accounts, Donation, config
 from scripts.deploy import deploy_donation
 
 from scripts.dev_utils import get_account
