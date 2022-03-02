@@ -3,6 +3,7 @@ from scripts.deploy import deploy
 import pytest
 from brownie.exceptions import VirtualMachineError
 
+
 @pytest.fixture()
 def contract():
     return deploy()
@@ -24,4 +25,10 @@ def test_start_lottery_not_owner_should_fail(contract):
     account = get_account(1)
     with pytest.raises(VirtualMachineError):
         contract.startLottery({'from': account})
-    
+
+
+def test_get_entrance_min_amount_eth_should_pass(contract, account):
+    min_amount = contract.getEntryMinEth()
+    print(min_amount)
+    assert min_amount > 0
+
