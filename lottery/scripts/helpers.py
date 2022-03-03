@@ -19,6 +19,10 @@ DEVELOPMENT = [
 
 
 def get_account(index=0):
+    print("main key ", config["wallets"]["main"])
+    if network.show_active() == "rinkeby":
+        accounts.add(config["wallets"]["main"])
+        accounts.add(config["wallets"]["second"])
     return accounts[index]
 
 

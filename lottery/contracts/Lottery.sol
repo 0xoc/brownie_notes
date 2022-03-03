@@ -35,7 +35,7 @@ contract Lottery is Ownable, VRFConsumerBase {
     ) VRFConsumerBase(_vrf_coordinator, _link) {
         priceFeed = AggregatorV3Interface(_priceFeedAddress);
         gameState = State.CLOSED;
-        minAmountUSD = 50 * 10**18;
+        minAmountUSD = 0.01 * 10**18;
 
         keyHash = _keyHash;
         fee = _fee;
